@@ -12,6 +12,10 @@ class dynamic_programming():
     def __init__(self, df):
         self.df = df
 
+    def wydruk(self,listaprint):
+        for i in range(len(listaprint)):
+            print(listaprint[i])
+
     def solve(self):
         lista4 = list()
         for i in range(len(self.df)):
@@ -63,7 +67,7 @@ class dynamic_programming():
         lista2 = list()
         for i in range(len(self.df)):
             boolen_tmp = 0
-            lista2_tmp = [self.df.iloc[i,3], self.df.iloc[i,4]]
+            lista2_tmp = [self.df.iloc[i,1], self.df.iloc[i,2]]
             for j in range(len(lista3_tmp2[i])):
                 if(type(lista3_tmp2[i][j]) == list):
                     tmp2 = [lista2_tmp[0]+lista3_tmp2[i][j][0], 
@@ -74,10 +78,38 @@ class dynamic_programming():
                 tmp2 = [lista2_tmp[0]+lista3_tmp2[i][0], 
                 lista2_tmp[1]*lista3_tmp2[i][1]]
                 lista2.append(tmp2)
-            
-        listaprint = lista2
-        for i in range(len(listaprint)):
-            print(listaprint[i])
+
+        lista1 = list()
+        max_lvl = 0
+        pos_lvl = 0
+        for i in lista2:
+            if(i[0]>max_lvl):
+                max_lvl = i[0]
+                pos_lvl = i
+        lista1.append(pos_lvl)
+        max_lvl = 0
+        pos_lvl = 0
+        for i in lista2:
+            if(i[1]>max_lvl):
+                max_lvl = i[1]
+                pos_lvl = i
+        lista1.append(pos_lvl)
+
+
+
+        print("Wynik ETAPU III")
+        self.wydruk(lista4)
+        print()
+        print("Wynik ETAPU II")
+        self.wydruk(lista3_tmp2)
+        print()
+        print("Wynik ETAPU I ")
+        self.wydruk(lista2)
+        print()
+        print("Wynik ETAPU I - szczegółowe")
+        self.wydruk(lista1)
+        
+    
 
 
 if __name__ == '__main__':
