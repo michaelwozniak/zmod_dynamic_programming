@@ -4,8 +4,6 @@ autorzy: Michał Woźniak & Michał Wrzesiński - WNE UW
 """
 
 import pandas as pd
-import numpy as np
-import matplotlib as mp
 
 class dynamic_programming():
 
