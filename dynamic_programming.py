@@ -7,8 +7,8 @@ import pandas as pd
 
 class dynamic_programming():
 
-    def __init__(self, df):
-        self.df = df
+    def __init__(self, filename):
+        self.df = pd.read_excel(filename) 
 
     def wydruk(self,listaprint):
         for i in range(len(listaprint)):
@@ -17,7 +17,7 @@ class dynamic_programming():
     def solve(self):
         lista4 = list()
         for i in range(len(self.df)):
-            tmp = [self.df.iloc[i,7],self.df.iloc[i,8]]
+            tmp = [self.df.iloc[i,5],self.df.iloc[i,6]]
             lista4.append(tmp)
 
         lista3 = list()
@@ -26,8 +26,8 @@ class dynamic_programming():
             foo = list()
             foo1 = list()
             for j in range(i+1):
-                tmp = [self.df.iloc[j,5],self.df.iloc[j,6]]
-                tmp1 = [self.df.iloc[j,7],self.df.iloc[j,8]]
+                tmp = [self.df.iloc[j,3],self.df.iloc[j,4]]
+                tmp1 = [self.df.iloc[j,5],self.df.iloc[j,6]]
                 foo.append(tmp)
                 foo1.append(tmp1)
 
@@ -93,25 +93,25 @@ class dynamic_programming():
                 pos_lvl = i
         lista1.append(pos_lvl)
 
-
-
+        print("REZULTATY: \n")
         print("Wynik ETAPU III")
         self.wydruk(lista4)
         print()
         print("Wynik ETAPU II")
         self.wydruk(lista3_tmp2)
         print()
-        print("Wynik ETAPU I ")
+        print("Wynik ETAPU I - część 1")
         self.wydruk(lista2)
         print()
-        print("Wynik ETAPU I - szczegółowe")
+        print("Wynik ETAPU I - część 2")
         self.wydruk(lista1)
         
     
 
-
 if __name__ == '__main__':
-    df = pd.read_excel("football.xlsx", sheet_name='Arkusz3')
-    df = df.iloc[0:11,0:9]
-    rozwiazanie = dynamic_programming(df)
+    print("Proszę podaj nazwę pliku Excel np. 'football_yhat.xlsx'")
+    filename = input()
+    rozwiazanie = dynamic_programming(filename)
     rozwiazanie.solve()
+
+
