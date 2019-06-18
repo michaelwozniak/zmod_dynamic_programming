@@ -19,9 +19,9 @@ class dynamic_programming():
         for i in range(len(listaprint)):
             for j in range(len(listaprint[i])):
                 try:
-                    listaprint[i][j] = round(listaprint[i][j], 3)
+                    listaprint[i][j] = round(listaprint[i][j], 4)
                 except:
-                    listaprint[i][j][1] = round(listaprint[i][j][1], 3)
+                    listaprint[i][j][1] = round(listaprint[i][j][1], 4)
         return listaprint
 
     def solve(self):
