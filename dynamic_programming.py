@@ -12,7 +12,17 @@ class dynamic_programming():
 
     def wydruk(self,listaprint):
         for i in range(len(listaprint)):
+            listaprint = self.zakraglenie(listaprint)
             print(listaprint[i])
+
+    def zakraglenie(self,listaprint):
+        for i in range(len(listaprint)):
+            for j in range(len(listaprint[i])):
+                try:
+                    listaprint[i][j] = round(listaprint[i][j], 3)
+                except:
+                    listaprint[i][j][1] = round(listaprint[i][j][1], 3)
+        return listaprint
 
     def solve(self):
         lista4 = list()
@@ -76,7 +86,6 @@ class dynamic_programming():
                 tmp2 = [lista2_tmp[0]+lista3_tmp2[i][0], 
                 lista2_tmp[1]*lista3_tmp2[i][1]]
                 lista2.append(tmp2)
-
         lista1 = list()
         max_lvl = 0
         pos_lvl = 0
@@ -92,7 +101,9 @@ class dynamic_programming():
                 max_lvl = i[1]
                 pos_lvl = i
         lista1.append(pos_lvl)
-
+        
+        lista3_tmp2.reverse()                   
+        
         print("REZULTATY: \n")
         print("Wynik ETAPU III")
         self.wydruk(lista4)
