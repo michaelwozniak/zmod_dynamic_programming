@@ -7,8 +7,10 @@ import pandas as pd
 
 class dynamic_programming():
 
-    def __init__(self, filename):
-        self.df = pd.read_excel(filename) 
+    def __init__(self, filename,ile):
+        self.df = pd.read_excel(filename)
+        self.df = self.df.iloc[0:ile,:]
+        print(self.df.head(ile))
 
     def wydruk(self,listaprint):
         for i in range(len(listaprint)):
@@ -122,7 +124,8 @@ class dynamic_programming():
 if __name__ == '__main__':
     print("Proszę podaj nazwę pliku Excel np. 'football_yhat.xlsx'")
     filename = input()
-    rozwiazanie = dynamic_programming(filename)
+    print("Proszę podaj budżet krótym dysponujesz od 1 do n")
+    ile = input()
+    ile = int(ile) + 1
+    rozwiazanie = dynamic_programming(filename,ile)
     rozwiazanie.solve()
-
-
